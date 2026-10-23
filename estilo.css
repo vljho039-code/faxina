@@ -1,0 +1,121 @@
+:root {
+  --fundo: #f6f7f5;
+  --cartao: #ffffff;
+  --texto: #17201e;
+  --suave: #5f6b68;
+  --linha: #e3e7e5;
+  --destaque: #0f766e;
+  --destaque-claro: #e3f3f1;
+  --alerta: #b45309;
+  --alerta-claro: #fdf2e3;
+  --raio: 18px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundo: #101614;
+    --cartao: #18211f;
+    --texto: #e8efed;
+    --suave: #97a5a1;
+    --linha: #26322f;
+    --destaque: #2dd4bf;
+    --destaque-claro: #123430;
+    --alerta: #fbbf24;
+    --alerta-claro: #33280f;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+main {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding: max(20px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+.carregando { margin: auto; color: var(--suave); }
+
+/* ---------- tela inicial ---------- */
+.topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.data { color: var(--suave); font-size: 15px; text-transform: capitalize; }
+.botao-detalhes {
+  border: 1px solid var(--linha); background: var(--cartao);
+  border-radius: 999px; padding: 8px 14px; font-size: 15px; font-weight: 600;
+}
+.principal { margin: auto 0; padding: 32px 0 48px; }
+.nome { font-size: 20px; color: var(--suave); margin: 0 0 6px; }
+.tarefa { font-size: clamp(34px, 10vw, 46px); line-height: 1.1; font-weight: 750; margin: 0; letter-spacing: -0.02em; }
+.tarefa + .tarefa { margin-top: 10px; }
+.tarefa.folga { color: var(--destaque); }
+.obs { color: var(--suave); margin: 10px 0 0; font-size: 16px; }
+.aviso {
+  margin-top: 22px; padding: 12px 14px; border-radius: 14px;
+  background: var(--alerta-claro); color: var(--texto); font-size: 15px;
+}
+.aviso strong { color: var(--alerta); }
+.demo {
+  font-size: 13px; color: var(--suave); text-align: center; margin: 0;
+}
+
+/* ---------- detalhes ---------- */
+.cabecalho { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.voltar { border: 0; background: none; font-size: 26px; padding: 4px 8px 4px 0; line-height: 1; }
+.cabecalho h1 { font-size: 22px; margin: 0; }
+h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--suave); margin: 26px 0 10px; }
+.cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; }
+.linha { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--linha); }
+.linha:first-child { border-top: 0; }
+.linha .quem { font-weight: 600; white-space: nowrap; }
+.linha .oque { text-align: right; color: var(--suave); }
+.linha.eu { background: var(--destaque-claro); }
+.linha.eu .oque { color: var(--texto); font-weight: 600; }
+.tag { display: block; font-size: 13px; color: var(--alerta); font-weight: 500; }
+.dia-titulo { padding: 10px 16px; font-weight: 700; background: var(--fundo); border-top: 1px solid var(--linha); text-transform: capitalize; font-size: 15px; }
+.dia-titulo:first-child { border-top: 0; }
+.vazio { padding: 14px 16px; color: var(--suave); }
+.nota { font-size: 13px; color: var(--suave); margin: 8px 2px 0; }
+.acoes { display: grid; gap: 10px; margin-top: 26px; }
+.botao {
+  border: 0; border-radius: 14px; padding: 14px; font-weight: 650; font-size: 16px;
+  background: var(--destaque); color: #fff;
+}
+@media (prefers-color-scheme: dark) { .botao { color: #06201d; } }
+.botao.secundario { background: var(--cartao); color: var(--texto); border: 1px solid var(--linha); }
+.botao:disabled { opacity: 0.5; }
+.rodape { margin-top: 22px; text-align: center; font-size: 13px; color: var(--suave); }
+.rodape button { border: 0; background: none; color: var(--destaque); font-size: 13px; text-decoration: underline; }
+
+/* ---------- escolher nome ---------- */
+.boas-vindas h1 { font-size: 30px; margin: 24px 0 6px; }
+.boas-vindas p { color: var(--suave); margin: 0 0 22px; }
+.lista-nomes { display: grid; gap: 10px; }
+.lista-nomes button {
+  text-align: left; padding: 16px 18px; border-radius: 14px; font-size: 18px; font-weight: 600;
+  background: var(--cartao); border: 1px solid var(--linha);
+}
+
+/* ---------- modal ---------- */
+dialog {
+  border: 0; border-radius: 22px; padding: 20px; width: min(440px, calc(100% - 32px));
+  background: var(--cartao); color: var(--texto);
+}
+dialog::backdrop { background: rgb(0 0 0 / 0.45); }
+dialog h3 { margin: 0 0 6px; font-size: 20px; }
+dialog p { margin: 0 0 16px; color: var(--suave); }
+.opcoes { display: grid; gap: 8px; margin-bottom: 14px; }
+.opcoes button {
+  text-align: left; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--linha);
+  background: var(--fundo);
+}
+.opcoes button small { display: block; color: var(--suave); }
+.erro { color: #dc2626; font-size: 14px; margin: 0 0 12px; }
