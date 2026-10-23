@@ -109,8 +109,8 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: 
   border: 0; border-radius: 14px; padding: 14px; font-weight: 650; font-size: 16px;
   background: var(--destaque); color: #fff;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .botao { color: #04203a; } }
-:root[data-theme="dark"] .botao { color: #04203a; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .botao:not(.secundario) { color: #04203a; } }
+:root[data-theme="dark"] .botao:not(.secundario) { color: #04203a; }
 .botao.secundario { background: var(--cartao); color: var(--texto); border: 1px solid var(--linha); }
 .botao:disabled { opacity: 0.5; }
 .rodape { margin-top: 22px; text-align: center; font-size: 13px; color: var(--suave); }
