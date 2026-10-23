@@ -1,6 +1,6 @@
 // Guarda os arquivos do app para abrir rápido e funcionar sem internet.
 // Os dados da planilha (outro domínio) não passam por aqui.
-var VERSAO = 'faxina-v2';
+var VERSAO = 'faxina-v3';
 var ARQUIVOS = [
   './', 'index.html', 'estilo.css', 'app.js', 'rotacao.js', 'config.js', 'manifest.webmanifest',
   'icones/icone.svg', 'icones/icone-192.png', 'icones/icone-512.png', 'icones/apple-touch-icon.png'
@@ -19,10 +19,11 @@ self.addEventListener('activate', function (e) {
 });
 
 // Rede primeiro (pega atualizações), cache se estiver sem internet.
+// 'no-cache' faz o navegador sempre conferir com o servidor, sem usar a cópia de 10 min.
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET' || new URL(e.request.url).origin !== location.origin) return;
   e.respondWith(
-    fetch(e.request).then(function (r) {
+    fetch(e.request, { cache: 'no-cache' }).then(function (r) {
       var copia = r.clone();
       caches.open(VERSAO).then(function (c) { c.put(e.request, copia); });
       return r;
