@@ -1,6 +1,6 @@
 // Guarda os arquivos do app para abrir rápido e funcionar sem internet.
 // Os dados da planilha (outro domínio) não passam por aqui.
-var VERSAO = 'faxina-v3';
+var VERSAO = 'faxina-v4';
 var ARQUIVOS = [
   './', 'index.html', 'estilo.css', 'app.js', 'rotacao.js', 'config.js', 'manifest.webmanifest',
   'icones/icone.svg', 'icones/icone-192.png', 'icones/icone-512.png', 'icones/apple-touch-icon.png'

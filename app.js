@@ -174,13 +174,37 @@
       }
     }
 
+    var tema = TEMAS[temaAtual()];
     app.innerHTML =
       '<div class="topo"><span class="data">' + esc(dataBonita(c.hoje)) + '</span>' +
-      '<button type="button" class="botao-detalhes" id="ir-detalhes">Rotação ›</button></div>' +
+      '<span class="direita"><button type="button" class="botao-tema" id="tema" aria-label="Tema: ' + tema.nome +
+      '" title="Tema: ' + tema.nome + '">' + tema.icone + '</button>' +
+      '<button type="button" class="botao-detalhes" id="ir-detalhes">Rotação ›</button></span></div>' +
       '<section class="principal"><p class="nome">' + esc(nome) + '</p>' + corpo + aviso + '</section>' +
       (estado.erro ? '<p class="demo">' + esc(estado.erro) + '</p>' : '') +
       (DEMO ? '<p class="demo">Modo demonstração: as trocas ficam só neste celular.</p>' : '');
     document.getElementById('ir-detalhes').onclick = function () { estado.tela = 'detalhes'; render(); window.scrollTo(0, 0); };
+    document.getElementById('tema').onclick = function () {
+      var ordem = ['auto', 'light', 'dark'];
+      aplicarTema(ordem[(ordem.indexOf(temaAtual()) + 1) % ordem.length]);
+      render();
+    };
+  }
+
+  // ---------- tema (automático / claro / escuro) ----------
+  var TEMAS = {
+    auto: { icone: '🌗', nome: 'automático' },
+    light: { icone: '☀️', nome: 'claro' },
+    dark: { icone: '🌙', nome: 'escuro' }
+  };
+  function temaAtual() {
+    var t = document.documentElement.dataset.theme;
+    return t === 'light' || t === 'dark' ? t : 'auto';
+  }
+  function aplicarTema(t) {
+    if (t === 'auto') delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = t;
+    try { if (t === 'auto') localStorage.removeItem('faxina:tema'); else localStorage.setItem('faxina:tema', t); } catch (e) { /* privado */ }
   }
 
   function linhasDia(dia, nome) {
