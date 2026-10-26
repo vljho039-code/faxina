@@ -7,5 +7,5 @@ Rotação da faxina do escritório. Abra **https://vljho039-code.github.io/faxin
 
 Na primeira vez, escolha seu nome.
 
-Os dados ficam numa Planilha do Google (script em [`planilha/Codigo.gs`](planilha/Codigo.gs)); a URL do
-script vai em [`config.js`](config.js). Sem ela, o app roda em modo demonstração.
+Os dados ficam numa Planilha do Google; a URL do script vai em [`config.js`](config.js).
+Sem ela, o app roda em modo demonstração. O script da planilha fica no repositório privado.

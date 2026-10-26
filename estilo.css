@@ -140,3 +140,35 @@ dialog p { margin: 0 0 16px; color: var(--suave); }
 }
 .opcoes button small { display: block; color: var(--suave); }
 .erro { color: #dc2626; font-size: 14px; margin: 0 0 12px; }
+
+/* ---------- admin ---------- */
+input, select {
+  font: inherit; color: var(--texto); background: var(--cartao);
+  border: 1px solid var(--linha); border-radius: 12px; padding: 11px 12px; width: 100%; min-width: 0;
+}
+input:focus, select:focus { outline: 2px solid var(--destaque); outline-offset: -1px; }
+label { display: grid; gap: 6px; font-size: 14px; color: var(--suave); }
+.linha-admin { align-items: center; }
+.linha-admin .quem { white-space: normal; }
+.linha-admin .sub { display: block; font-weight: 400; font-size: 14px; color: var(--suave); }
+.remover {
+  border: 0; background: none; color: var(--suave); font-size: 16px;
+  width: 36px; height: 36px; border-radius: 50%; flex: none;
+}
+.remover:hover, .remover:focus-visible { background: var(--fundo); color: #dc2626; }
+.adicionar { display: flex; gap: 8px; margin-top: 10px; }
+.adicionar .botao { padding: 11px 16px; flex: none; }
+.adicionar.grade { display: grid; grid-template-columns: 1fr 1fr; }
+.adicionar.grade .botao { grid-column: 1 / -1; }
+.formulario { display: grid; gap: 12px; }
+.cartao-form { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 16px; }
+.erro[hidden] { display: none; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px);
+  background: var(--texto); color: var(--fundo); padding: 10px 18px; border-radius: 999px;
+  font-size: 15px; font-weight: 600; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+  max-width: calc(100% - 32px); text-align: center;
+}
+.toast.visivel { opacity: 1; transform: translate(-50%, 0); }
+.toast-erro { background: #dc2626; color: #fff; }
