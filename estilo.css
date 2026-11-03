@@ -116,14 +116,11 @@ h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: 
 .rodape { margin-top: 22px; text-align: center; font-size: 13px; color: var(--suave); }
 .rodape button { border: 0; background: none; color: var(--destaque); font-size: 13px; text-decoration: underline; }
 
-/* ---------- escolher nome ---------- */
+/* ---------- login ---------- */
 .boas-vindas h1 { font-size: 30px; margin: 24px 0 6px; }
 .boas-vindas p { color: var(--suave); margin: 0 0 22px; }
-.lista-nomes { display: grid; gap: 10px; }
-.lista-nomes button {
-  text-align: left; padding: 16px 18px; border-radius: 14px; font-size: 18px; font-weight: 600;
-  background: var(--cartao); border: 1px solid var(--linha);
-}
+.boas-vindas .cartao-form p.erro { margin: 0; }
+.boas-vindas .nota, .boas-vindas .demo { margin-top: 14px; }
 
 /* ---------- modal ---------- */
 dialog {
@@ -163,6 +160,17 @@ label { display: grid; gap: 6px; font-size: 14px; color: var(--suave); }
 .formulario { display: grid; gap: 12px; }
 .cartao-form { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 16px; }
 .erro[hidden] { display: none; }
+.botoes-linha { display: flex; align-items: center; gap: 6px; flex: none; }
+.mini {
+  font: inherit; font-size: 13px; font-weight: 600; color: var(--destaque); background: var(--fundo);
+  border: 1px solid var(--linha); border-radius: 10px; padding: 6px 9px; width: auto; min-height: 32px;
+}
+select.mini { color: var(--texto); font-weight: 400; max-width: 110px; }
+.linha-admin.checkbox { display: flex; grid-template-columns: none; font-size: inherit; color: var(--texto); cursor: pointer; }
+.linha-admin.checkbox input { width: 22px; height: 22px; flex: none; accent-color: var(--destaque); }
+#add-ajuste label { grid-column: 1 / -1; }
+.credenciais { margin-bottom: 12px; }
+.credenciais .oque { color: var(--texto); font-size: 18px; user-select: all; }
 
 .toast {
   position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translate(-50%, 20px);

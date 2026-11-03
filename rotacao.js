@@ -59,6 +59,7 @@
       tarefas: tarefas,
       feriados: feriados,
       ausencias: dados.ausencias || [],
+      ajustes: dados.ajustes || [],
       substituicoes: (dados.substituicoes || []).slice().sort(function (a, b) {
         return a.data < b.data ? -1 : a.data > b.data ? 1 : 0;
       })
@@ -209,6 +210,22 @@
       var itens = [];
       presentes.forEach(function (p) {
         escala[p].forEach(function (t) { itens.push({ pessoa: p, tarefa: t, escalado: p }); });
+      });
+
+      // Ajustes do admin: "neste dia, fulano faz tal tarefa". Quem tinha a
+      // tarefa fica com a de fulano (troca); a rotação em si não muda.
+      cfg.ajustes.forEach(function (a) {
+        if (a.data !== data || presentes.indexOf(a.pessoa) === -1) return;
+        var meu = itens.filter(function (it) { return it.pessoa === a.pessoa; })[0];
+        var dono = itens.filter(function (it) { return it.tarefa === a.tarefa; })[0];
+        if (dono && dono.pessoa === a.pessoa) return;
+        if (dono) {
+          var antigo = dono.pessoa;
+          dono.pessoa = a.pessoa; dono.motivo = { tipo: 'ajuste' };
+          if (meu) { meu.pessoa = antigo; meu.motivo = { tipo: 'ajuste' }; }
+        } else if (meu) {
+          meu.tarefa = a.tarefa; meu.motivo = { tipo: 'ajuste' };
+        }
       });
 
       // Pagamento de dívidas (ordem de criação; 1 por devedor e 1 por credor por dia).
